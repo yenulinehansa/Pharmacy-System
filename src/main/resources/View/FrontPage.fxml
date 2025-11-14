@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.pannable.PannablePane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="549.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FrontPageController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/pharmacy.jpg" />
+         </image>
+      </ImageView>
+      <PannablePane prefHeight="72.0" prefWidth="900.0" style="-fx-background-color: FFFFFF;">
+         <children>
+            <Label prefHeight="16.0" prefWidth="302.0" text="New Pharmacy">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Label>
+             
+         </children>
+      </PannablePane>
+      <AnchorPane layoutX="524.0" layoutY="268.0" prefHeight="322.0" prefWidth="310.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-radius: 10;">
+         <children>
+            <Label layoutX="114.0" layoutY="14.0" text="Login" textFill="#3d1aff">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="23.0" layoutY="75.0" prefHeight="28.0" prefWidth="108.0" style="-fx-background-color: FFFFFF;">
+               <children>
+                  <JFXRadioButton fx:id="ManagerRadio" layoutY="6.0" text="I'm Manager">
+                     <selectedColor>
+                        <Color red="0.04226510599255562" green="0.030292397364974022" blue="0.38947367668151855" />
+                     </selectedColor></JFXRadioButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="173.0" layoutY="75.0" prefHeight="28.0" prefWidth="122.0" style="-fx-background-color: FFFFFF;">
+               <children>
+                  <JFXRadioButton fx:id="EmployeeRadio" layoutX="11.0" layoutY="5.0" text="I'm Employee">
+                     <selectedColor>
+                        <Color red="0.17456218600273132" green="0.061000000685453415" blue="0.6100000143051147" />
+                     </selectedColor></JFXRadioButton>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="txtUsername" layoutX="23.0" layoutY="123.0" prefHeight="26.0" prefWidth="217.0" promptText="Username" />
+            <TextField fx:id="txtPassword" layoutX="23.0" layoutY="161.0" prefHeight="26.0" prefWidth="218.0" promptText="Password" />
+            <Label fx:id="lblForgotPassword" layoutX="23.0" layoutY="195.0" text="Forgot Password" textFill="#5561cf">
+               <font>
+                  <Font name="Dubai Regular" size="12.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnLogin" layoutX="113.0" layoutY="236.0" prefHeight="37.0" prefWidth="74.0" style="-fx-background-color: rgba(14, 5, 187, 1);" text="Login" textFill="#faf5f5">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
