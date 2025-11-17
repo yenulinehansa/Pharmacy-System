@@ -1,12 +1,10 @@
 package Model.Entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -14,19 +12,18 @@ import java.time.LocalDate;
 @ToString
 @Entity
 
-public class Drugs {
+public class SuppliersEntity {
     @Id
 
     private String id;
 
     private String name;
 
-    private String brand;
+    private String telNo;
 
-    private double unitprice;
+    private String email;
 
-    private int stock_qty;
+    private String company;
 
-    private LocalDate expDate;
-
+    private LocalDate regDate;
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -8,22 +11,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="633.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminDashBoardController">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="68.0" prefWidth="849.0" style="-fx-background-color: rgba(31, 83, 214, 1);">
+      <AnchorPane layoutY="-1.0" prefHeight="68.0" prefWidth="980.0" style="-fx-background-color: rgba(31, 83, 214, 1);">
          <children>
             <Label layoutX="8.0" layoutY="12.0" text="New Pharmacy" textFill="#faf7f7">
                <font>
                   <Font name="System Bold" size="29.0" />
                </font>
             </Label>
-            <Label layoutX="582.0" layoutY="26.0" prefHeight="26.0" prefWidth="79.0" text="Welcome " textFill="WHITE">
+            <Label layoutX="733.0" layoutY="20.0" prefHeight="26.0" prefWidth="79.0" text="Welcome " textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei Light" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lblUser" layoutX="663.0" layoutY="26.0" prefHeight="26.0" prefWidth="138.0" textFill="WHITE">
+            <Label fx:id="lblUser" layoutX="813.0" layoutY="20.0" prefHeight="26.0" prefWidth="138.0" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei Light" size="16.0" />
                </font>
@@ -109,9 +111,9 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="178.0" layoutY="67.0" prefHeight="566.0" prefWidth="671.0" style="-fx-background-color: rgba(187, 193, 187, 1);">
+      <AnchorPane layoutX="178.0" layoutY="67.0" prefHeight="566.0" prefWidth="801.0" style="-fx-background-color: rgba(187, 193, 187, 1);">
          <children>
-            <AnchorPane layoutX="94.0" layoutY="40.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(135, 205, 128, 1);">
+            <AnchorPane layoutX="26.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(135, 205, 128, 1);">
                <children>
                   <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
                      <children>
@@ -125,7 +127,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="391.0" layoutY="40.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(84, 198, 216, 1);">
+            <AnchorPane layoutX="232.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(84, 198, 216, 1);">
                <children>
                   <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
                      <children>
@@ -139,7 +141,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="391.0" layoutY="267.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(255, 168, 110, 1);">
+            <AnchorPane layoutX="608.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(255, 168, 110, 1);">
                <children>
                   <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
                      <children>
@@ -153,7 +155,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="94.0" layoutY="267.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(205, 128, 140, 1);">
+            <AnchorPane layoutX="425.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(205, 128, 140, 1);">
                <children>
                   <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
                      <children>
@@ -167,6 +169,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
+
          </children>
       </AnchorPane>
    </children>

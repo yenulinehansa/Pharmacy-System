@@ -13,7 +13,7 @@ public class Starter extends Application {
     public void start(Stage stage) throws Exception {
         try (SessionFactory factory = HibernateUtil.getSessionFactory()) {
         }
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/AdminDashBoard.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/AdminDrugsAdding.fxml"))));
         stage.show();
 
     }

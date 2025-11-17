@@ -1,19 +1,16 @@
 package Model.Entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.time.LocalDate;
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Entity
-
-public class Suppliers {
+public class PatientsEntity {
     @Id
 
     private String id;
@@ -22,9 +19,4 @@ public class Suppliers {
 
     private String telNo;
 
-    private String email;
-
-    private String company;
-
-    private LocalDate regDate;
 }
