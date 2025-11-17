@@ -1,7 +1,5 @@
 package Model.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -11,21 +9,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
 
 public class DrugsEntity {
-    @Id
-
     private String id;
-
     private String name;
-
     private String brand;
-
     private double unitprice;
-
     private int stock_qty;
-
     private LocalDate expDate;
 
 }
