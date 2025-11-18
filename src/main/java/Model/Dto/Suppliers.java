@@ -1,6 +1,6 @@
 package Model.Dto;
 
-import jakarta.persistence.Entity;
+
 import lombok.*;
 
 import java.time.LocalDate;

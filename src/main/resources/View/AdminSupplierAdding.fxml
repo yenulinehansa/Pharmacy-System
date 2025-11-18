@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminDrugsAddingController">
+<AnchorPane prefHeight="600.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminSupplierAddingController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="68.0" prefWidth="1326.0" style="-fx-background-color: rgba(31, 83, 214, 1);">
          <children>
@@ -124,22 +124,22 @@
       </AnchorPane>
       <AnchorPane layoutX="178.0" layoutY="67.0" prefHeight="566.0" prefWidth="1227.0" style="-fx-background-color: rgba(187, 193, 187, 1);">
          <children>
-            <Label layoutX="28.0" layoutY="35.0" text="Drug List">
+            <Label layoutX="28.0" layoutY="35.0" text="Supplier List">
                <font>
                   <Font name="Roboto Medium" size="16.0" />
                </font>
             </Label>
-            <TableView fx:id="tblDrugs" layoutX="28.0" layoutY="127.0" prefHeight="342.0" prefWidth="650.0" style="-fx-background-color: rgba(178, 182, 188, 1);">
+            <TableView fx:id="tblSuppliers" layoutX="28.0" layoutY="127.0" prefHeight="342.0" prefWidth="650.0" style="-fx-background-color: rgba(178, 182, 188, 1);">
               <columns>
                 <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
-                <TableColumn fx:id="colName" prefWidth="159.199951171875" text="Name" />
-                  <TableColumn fx:id="colBrand" minWidth="3.20001220703125" prefWidth="147.20001220703125" text="Brand" />
-                  <TableColumn fx:id="colUnitPrice" prefWidth="88.800048828125" text="Unit Price" />
-                  <TableColumn fx:id="colStockQty" prefWidth="72.00006103515625" text="Stock_Qty" />
-                  <TableColumn fx:id="colExpDate" prefWidth="110.40008544921875" text="Exp_Date" />
+                <TableColumn fx:id="colName" prefWidth="135.20001220703125" text="Name" />
+                  <TableColumn fx:id="colTelNo" minWidth="3.20001220703125" prefWidth="92.79998779296875" text="Tel No" />
+                  <TableColumn fx:id="colEmail" prefWidth="152.79998779296875" text="Email" />
+                  <TableColumn fx:id="colCompany" prefWidth="88.79998779296875" text="Company" />
+                  <TableColumn fx:id="colRegDate" prefWidth="110.40008544921875" text="Reg Date" />
               </columns>
             </TableView>
-            <Label layoutX="970.0" layoutY="54.0" text="Drug List/Edit">
+            <Label layoutX="970.0" layoutY="54.0" text="Supplier List/Edit">
                <font>
                   <Font name="Microsoft PhagsPa Bold" size="16.0" />
                </font>
@@ -154,22 +154,22 @@
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="741.0" layoutY="223.0" prefHeight="22.0" prefWidth="66.0" text="Brand :">
+            <Label layoutX="741.0" layoutY="223.0" prefHeight="22.0" prefWidth="66.0" text="Tel No :">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="741.0" layoutY="283.0" prefHeight="22.0" prefWidth="94.0" text="Unit Price :">
+            <Label layoutX="741.0" layoutY="283.0" prefHeight="22.0" prefWidth="94.0" text="Email">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="741.0" layoutY="345.0" prefHeight="22.0" prefWidth="94.0" text="Stock_Qty :">
+            <Label layoutX="741.0" layoutY="345.0" prefHeight="22.0" prefWidth="94.0" text="Company">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="741.0" layoutY="400.0" prefHeight="22.0" prefWidth="94.0" text="Exp_Date :">
+            <Label layoutX="741.0" layoutY="400.0" prefHeight="22.0" prefWidth="94.0" text="Reg Date :">
                <font>
                   <Font name="Calibri Bold" size="18.0" />
                </font>
@@ -179,9 +179,9 @@
 
             <TextField fx:id="txtSearch" layoutX="28.0" layoutY="64.0" onAction="#OnSearch" prefHeight="26.0" prefWidth="391.0" promptText="Search" />
             <TextField fx:id="txtName" layoutX="913.0" layoutY="166.0" prefWidth="270.0" />
-            <TextField fx:id="txtBrand" layoutX="913.0" layoutY="221.0" prefWidth="270.0" />
-            <TextField fx:id="txtUnitPrice" layoutX="913.0" layoutY="281.0" prefWidth="270.0" />
-            <TextField fx:id="txtStockQty" layoutX="913.0" layoutY="343.0" prefWidth="270.0" />
+            <TextField fx:id="txtTelNo" layoutX="913.0" layoutY="221.0" prefWidth="270.0" />
+            <TextField fx:id="txtEmail" layoutX="913.0" layoutY="281.0" prefWidth="270.0" />
+            <TextField fx:id="txtCompany" layoutX="913.0" layoutY="343.0" prefWidth="270.0" />
             <Button fx:id="btnAdd" layoutX="779.0" layoutY="488.0" mnemonicParsing="false" onAction="#OnAdd" prefHeight="43.0" prefWidth="112.0" style="-fx-background-color: rgba(86, 208, 52, 1);" text="Add">
                <font>
                   <Font name="System Bold" size="21.0" />
@@ -198,7 +198,7 @@
                </font>
             </Button>
             <DatePicker fx:id="datePicker" layoutX="913.0" layoutY="398.0" prefHeight="26.0" prefWidth="270.0" />
-            <Button fx:id="btnView" layoutX="28.0" layoutY="488.0" mnemonicParsing="false" onAction="#Onview" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: rgba(201, 44, 138, 1);" text="View">
+            <Button fx:id="btnView" layoutX="28.0" layoutY="489.0" mnemonicParsing="false" onAction="#Onview" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: rgba(201, 44, 138, 1);" text="View">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

@@ -25,9 +25,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AdminDrugsAddingController implements Initializable {
+
     DrugService drugService = new DrugServiceImpl();
     ObservableList<Drugs> drugsList = FXCollections.observableArrayList();
-
+    @FXML
+    private Button btnView;
     @FXML
     private Button btnAdd;
     @FXML
@@ -307,5 +309,10 @@ public class AdminDrugsAddingController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void Onview(ActionEvent actionEvent) {
+        loadAllDrugs();
+
     }
 }
