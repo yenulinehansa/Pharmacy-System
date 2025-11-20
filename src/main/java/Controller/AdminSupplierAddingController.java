@@ -138,7 +138,7 @@ public class AdminSupplierAddingController implements Initializable {
 
     @FXML
     void OnIdSelected(ActionEvent event) {
-        // This can be used for auto-completion or validation
+
     }
 
     @FXML

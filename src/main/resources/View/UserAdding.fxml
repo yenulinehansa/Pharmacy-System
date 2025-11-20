@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="639.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserAddingController">
+<AnchorPane prefHeight="532.0" prefWidth="1211.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserAddingController">
 
     <children>
         <Label layoutX="28.0" layoutY="35.0" text="User List">
@@ -19,7 +19,7 @@
             </font>
         </Label>
 
-        <TableView fx:id="tblUsers" layoutX="28.0" layoutY="127.0" prefHeight="342.0" prefWidth="826.0" style="-fx-background-color: rgba(178, 182, 188, 1);">
+        <TableView fx:id="tblUsers" layoutX="28.0" layoutY="127.0" prefHeight="342.0" prefWidth="630.0" style="-fx-background-color: rgba(178, 182, 188, 1);">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="53.599971771240234" text="Id" />
                 <TableColumn fx:id="colName" prefWidth="107.199951171875" text="Name" />
@@ -33,94 +33,94 @@
             </columns>
         </TableView>
 
-        <Label layoutX="1099.0" layoutY="54.0" text="User Management">
+        <Label layoutX="885.0" layoutY="25.0" text="User Management">
             <font>
                 <Font name="Microsoft PhagsPa Bold" size="16.0" />
             </font>
         </Label>
 
-        <Label layoutX="926.0" layoutY="115.0" text="ID :">
+        <Label layoutX="758.0" layoutY="66.0" text="ID :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
 
-        <Label layoutX="926.0" layoutY="167.0" prefHeight="22.0" prefWidth="66.0" text="Name :">
+        <Label layoutX="758.0" layoutY="115.0" prefHeight="22.0" prefWidth="66.0" text="Name :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
 
-        <Label layoutX="926.0" layoutY="222.0" prefHeight="22.0" prefWidth="66.0" text="TelNo :">
+        <Label layoutX="758.0" layoutY="159.0" prefHeight="22.0" prefWidth="66.0" text="TelNo :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
 
-        <Label layoutX="926.0" layoutY="270.0" prefHeight="22.0" prefWidth="94.0" text="Email :">
+        <Label layoutX="758.0" layoutY="198.0" prefHeight="22.0" prefWidth="94.0" text="Email :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
 
-        <Label layoutX="926.0" layoutY="322.0" prefHeight="22.0" prefWidth="94.0" text="Role :">
+        <Label layoutX="758.0" layoutY="239.0" prefHeight="22.0" prefWidth="94.0" text="Role :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
 
-        <Label layoutX="925.0" layoutY="530.0" prefHeight="22.0" prefWidth="94.0" text="Reg_Date :">
+        <Label layoutX="758.0" layoutY="398.0" prefHeight="22.0" prefWidth="94.0" text="Reg_Date :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
 
-        <TextField fx:id="txtId" layoutX="1035.0" layoutY="114.0" onAction="#OnIdSelected" prefWidth="270.0" />
+        <TextField fx:id="txtId" layoutX="888.0" layoutY="64.0" onAction="#OnIdSelected" prefWidth="270.0" />
         <TextField fx:id="txtSearch" layoutX="28.0" layoutY="64.0" onAction="#OnSearch" prefHeight="26.0" prefWidth="391.0" promptText="Search" />
-        <TextField fx:id="txtName" layoutX="1035.0" layoutY="166.0" prefWidth="270.0" />
-        <TextField fx:id="txtTelNo" layoutX="1035.0" layoutY="221.0" prefWidth="270.0" />
-        <TextField fx:id="txtEmail" layoutX="1035.0" layoutY="269.0" prefWidth="270.0" />
-        <TextField fx:id="txtUsername" layoutX="1034.0" layoutY="374.0" prefWidth="270.0" />
+        <TextField fx:id="txtName" layoutX="888.0" layoutY="113.0" prefWidth="270.0" />
+        <TextField fx:id="txtTelNo" layoutX="888.0" layoutY="157.0" prefWidth="270.0" />
+        <TextField fx:id="txtEmail" layoutX="888.0" layoutY="196.0" prefWidth="270.0" />
+        <TextField fx:id="txtUsername" layoutX="888.0" layoutY="283.0" prefWidth="270.0" />
 
-        <Button fx:id="btnAdd" layoutX="916.0" layoutY="570.0" mnemonicParsing="false" onAction="#OnAdd" prefHeight="43.0" prefWidth="112.0" style="-fx-background-color: rgba(86, 208, 52, 1);" text="Add">
+        <Button fx:id="btnAdd" layoutX="749.0" layoutY="446.0" mnemonicParsing="false" onAction="#OnAdd" prefHeight="43.0" prefWidth="112.0" style="-fx-background-color: rgba(86, 208, 52, 1);" text="Add">
             <font>
                 <Font name="System Bold" size="21.0" />
             </font>
         </Button>
 
-        <Button fx:id="btnUpdate" layoutX="1057.0" layoutY="570.0" mnemonicParsing="false" onAction="#OnUpdate" prefHeight="43.0" prefWidth="112.0" style="-fx-background-color: rgba(208, 143, 52, 1);" text="Update">
+        <Button fx:id="btnUpdate" layoutX="927.0" layoutY="446.0" mnemonicParsing="false" onAction="#OnUpdate" prefHeight="43.0" prefWidth="112.0" style="-fx-background-color: rgba(208, 143, 52, 1);" text="Update">
             <font>
                 <Font name="System Bold" size="21.0" />
             </font>
         </Button>
 
-        <Button fx:id="btnDelete" layoutX="1192.0" layoutY="570.0" mnemonicParsing="false" onAction="#OnDelete" prefHeight="43.0" prefWidth="112.0" style="-fx-background-color: rgba(226, 38, 38, 1);" text="Delete">
+        <Button fx:id="btnDelete" layoutX="1074.0" layoutY="446.0" mnemonicParsing="false" onAction="#OnDelete" prefHeight="43.0" prefWidth="112.0" style="-fx-background-color: rgba(226, 38, 38, 1);" text="Delete">
             <font>
                 <Font name="System Bold" size="21.0" />
             </font>
         </Button>
 
-        <DatePicker fx:id="datePicker" layoutX="1035.0" layoutY="528.0" prefHeight="26.0" prefWidth="270.0" />
+        <DatePicker fx:id="datePicker" layoutX="888.0" layoutY="396.0" prefHeight="26.0" prefWidth="270.0" />
 
         <Button fx:id="btnView" layoutX="28.0" layoutY="489.0" mnemonicParsing="false" onAction="#Onview" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: rgba(201, 44, 138, 1);" text="View">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Button>
-        <TextField fx:id="txtPassword" layoutX="1035.0" layoutY="420.0" prefWidth="270.0" />
-        <TextField fx:id="txtSalary" layoutX="1035.0" layoutY="476.0" prefWidth="270.0" />
-        <ComboBox fx:id="cmbRole" layoutX="1035.0" layoutY="320.0" prefHeight="26.0" prefWidth="270.0" />
-        <Label layoutX="925.0" layoutY="375.0" prefHeight="22.0" prefWidth="94.0" text="Username :">
+        <TextField fx:id="txtPassword" layoutX="888.0" layoutY="323.0" prefWidth="270.0" />
+        <TextField fx:id="txtSalary" layoutX="888.0" layoutY="360.0" prefWidth="270.0" />
+        <ComboBox fx:id="cmbRole" layoutX="888.0" layoutY="237.0" prefHeight="26.0" prefWidth="270.0" />
+        <Label layoutX="758.0" layoutY="285.0" prefHeight="22.0" prefWidth="94.0" text="Username :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="925.0" layoutY="421.0" prefHeight="22.0" prefWidth="94.0" text="Password :">
+        <Label layoutX="758.0" layoutY="325.0" prefHeight="22.0" prefWidth="94.0" text="Password :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="925.0" layoutY="477.0" prefHeight="22.0" prefWidth="94.0" text="Salary :">
+        <Label layoutX="758.0" layoutY="362.0" prefHeight="22.0" prefWidth="94.0" text="Salary :">
             <font>
                 <Font name="Calibri Bold" size="18.0" />
             </font>

@@ -3,13 +3,16 @@ package Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainAdminController {
+public class MainAdminController implements Initializable {
 
     @FXML private Label lblUser;
     @FXML private AnchorPane contentPane;
@@ -41,9 +44,7 @@ public class MainAdminController {
     private JFXButton btnUsers;
 
 
-    public void initialize() {
-        loadDashboard();
-    }
+
 
     @FXML
     private void loadDashboard() {
@@ -62,7 +63,7 @@ public class MainAdminController {
 
     @FXML
     private void loadPatients() {
-        showAlert("Info", "Patients module coming soon!");
+        loadFXML("/View/PatientsView.fxml");
     }
 
     @FXML
@@ -111,11 +112,7 @@ public class MainAdminController {
         }
     }
 
-    public void setUser(String username) {
-        if (lblUser != null) {
-            lblUser.setText(username);
-        }
-    }
+
 
     private void showAlert(String title, String message) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
@@ -123,5 +120,10 @@ public class MainAdminController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadDashboard();
     }
 }
