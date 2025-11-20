@@ -77,7 +77,7 @@ public class MainAdminController {
 
     @FXML
     private void loadUsers() {
-        showAlert("Info", "Users module coming soon!");
+        loadFXML("/View/UserAdding.fxml");
     }
 
     @FXML
