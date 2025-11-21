@@ -89,11 +89,7 @@ public class DrugServiceImpl implements DrugService {
         }
     }
 
-    @Override
-    public boolean updateDrugStock(String drugId, int quantityToReduce) throws SQLException {
-        Boolean isupdatedstock = drugRepository.updatestock(drugId, quantityToReduce);
-        return isupdatedstock;
-    }
+
     private Drugs convertToDto(DrugsEntity entity) {
         if (entity == null) return null;
         return new Drugs(

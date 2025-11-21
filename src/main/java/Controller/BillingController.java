@@ -1,6 +1,5 @@
 package Controller;
 
-import DB.DBConnection;
 import Model.Dto.*;
 import Service.*;
 import javafx.collections.FXCollections;
@@ -21,7 +20,6 @@ import javafx.util.Pair;
 
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -165,98 +163,27 @@ public class BillingController implements Initializable {
     }
 
     private void SaveToDatabase() throws SQLException {
-        Connection connection = null;
-        try {
-
-            connection = DBConnection.getInstance().getConnection();
-            connection.setAutoCommit(false); // Start transaction
-
-            String orderid = lblOrderId.getText();
-            String patientid = txtid.getText();
-            Double totalDiscount = Double.parseDouble(lblDiscount.getText().replace("Rs. ", ""));
-            Double finaltotal = Double.parseDouble(lblFinalAmount.getText().replace("Rs. ", ""));
+        String orderid=lblOrderId.getText();
+        String patientid=txtid.getText();
+        Double totalDiscount=Double.parseDouble(lblDiscount.getText().replace("Rs. ", ""));
+        Double finaltotal=Double.parseDouble(lblTotal.getText().replace("Rs. ", ""));
+        Sales sales=new Sales(orderid,patientid,totalDiscount,finaltotal);
+        salesService.save(sales);
 
 
-            Sales sales = new Sales(orderid, patientid, totalDiscount, finaltotal);
-            salesService.save(sales); // Remove connection parameter
+        for (CartItems cartItem : cartItems) {
+            SalesDetails salesDetail = new SalesDetails(
+                    orderid,
+                    patientid,
+                    cartItem.getDrugid(),
+                    cartItem.getQuantity(),
+                    cartItem.getDiscount(),
+                    cartItem.getTotalprice(),
+                    LocalDate.now()
+            );
 
-
-            for (CartItems cartItem : cartItems) {
-
-                boolean stockUpdated = drugService.updateDrugStock(cartItem.getDrugid(), cartItem.getQuantity());
-
-                if (!stockUpdated) {
-                    throw new SQLException("Insufficient stock for drug ID: " + cartItem.getDrugid());
-                }
-
-
-                SalesDetails salesDetail = new SalesDetails(
-                        orderid,
-                        patientid,
-                        cartItem.getDrugid(),
-                        cartItem.getQuantity(),
-                        cartItem.getDiscount(),
-                        cartItem.getTotalprice(),
-                        LocalDate.now()
-                );
-                salesService.saveSalesDetails(salesDetail);
-            }
-
-            // Commit transaction
-            connection.commit();
-
-            // Show success message
-            showAlert(Alert.AlertType.INFORMATION, "Success",
-                    "Payment processed successfully! Order ID: " + orderid);
-
-            // Clear cart and reset form
-            clearCartAndForm();
-
-        } catch (SQLException e) {
-            // Rollback transaction in case of error
-            if (connection != null) {
-                try {
-                    connection.rollback();
-                } catch (SQLException rollbackEx) {
-                    rollbackEx.printStackTrace();
-                }
-            }
-            showAlert(Alert.AlertType.ERROR, "Transaction Failed",
-                    "Failed to process payment: " + e.getMessage());
-            throw e;
-        } finally {
-            // Restore auto-commit and close connection
-            if (connection != null) {
-                try {
-                    connection.setAutoCommit(true);
-                    connection.close();
-                } catch (SQLException closeEx) {
-                    closeEx.printStackTrace();
-                }
-            }
+            salesService.saveSalesDetails(salesDetail);
         }
-    }
-
-    private void clearCartAndForm() throws SQLException {
-        // Clear cart
-        cartItems.clear();
-        tblcart.setItems(cartItems);
-
-        // Reset totals
-        lblTotal.setText("Rs. 0.00");
-        lblDiscount.setText("Rs. 0.00");
-        lblFinalAmount.setText("Rs. 0.00");
-        lblFinaltotal.setText("Rs. 0.00");
-        lblbalance.setText("Rs. 0.00");
-
-        // Clear payment field
-        txtReceivedAmount.clear();
-
-        // Generate new order ID
-        generateOrderid();
-
-        // Refresh drugs table to show updated quantities
-        loadAllDrugs();
     }
 
     @FXML
@@ -315,14 +242,14 @@ public class BillingController implements Initializable {
         colunitprice.setCellValueFactory(new PropertyValueFactory<>("unitprice"));
         colqty.setCellValueFactory(new PropertyValueFactory<>("stock_qty"));
         colavailability.setCellValueFactory(new PropertyValueFactory<>("expDate"));
-        
+
         loadAllDrugs();
-        
+
         colpatientid.setCellValueFactory(new PropertyValueFactory<>("Patientid"));
         coldrugid.setCellValueFactory(new PropertyValueFactory<>("Drugid"));
         coltotal.setCellValueFactory(new PropertyValueFactory<>("totalprice"));
         coldiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
-        
+
         setupTableSelectionListener();
 
     }

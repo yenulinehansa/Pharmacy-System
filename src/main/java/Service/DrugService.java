@@ -14,5 +14,5 @@ public interface DrugService {
     List<Drugs> searchDrugs(String keyword) throws SQLException;
     String generateNextDrugId() throws SQLException;
 
-    boolean updateDrugStock(String drugid, int quantity) throws SQLException;
+
 }

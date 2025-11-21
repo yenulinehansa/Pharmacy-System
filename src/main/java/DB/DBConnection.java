@@ -6,22 +6,32 @@ import java.sql.SQLException;
 
 public class DBConnection {
     private static DBConnection instance;
-    private final Connection connection;
+    private Connection connection;
 
     private DBConnection() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy_System", "root" ,"1234");
+        createConnection();
+    }
 
+    private void createConnection() throws SQLException {
+        connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/Pharmacy_System",
+                "root",
+                "1234"
+        );
     }
 
     public static DBConnection getInstance() throws SQLException {
-        return instance == null ? instance = new DBConnection():instance;
+        if (instance == null) {
+            instance = new DBConnection();
+        }
+        return instance;
     }
 
-
-
-    public Connection getConnection(){
+    public Connection getConnection() throws SQLException {
+        // Always check if connection is valid before returning it
+        if (connection == null || connection.isClosed() || !connection.isValid(2)) {
+            createConnection();
+        }
         return connection;
     }
-
-
 }

@@ -16,5 +16,5 @@ public interface DrugRepository {
 
 
 
-    Boolean updatestock(String drugId, int quantityToReduce) throws SQLException;
+
 }
