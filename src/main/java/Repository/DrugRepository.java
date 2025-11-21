@@ -13,4 +13,8 @@ public interface DrugRepository {
     List<DrugsEntity> findAll() throws SQLException;
     List<DrugsEntity> search(String keyword) throws SQLException;
     String getLastDrugId() throws SQLException;
+
+
+
+    Boolean updatestock(String drugId, int quantityToReduce) throws SQLException;
 }

@@ -13,4 +13,5 @@ public class CartItems {
     private String Drugid;
     private double totalprice;
     private double discount;
+    private int quantity;
 }

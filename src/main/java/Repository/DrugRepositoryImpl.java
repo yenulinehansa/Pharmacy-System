@@ -108,6 +108,22 @@ public class DrugRepositoryImpl implements DrugRepository {
         return null; // No drugs in database
     }
 
+    @Override
+    public Boolean updatestock(String drugId, int quantityToReduce) throws SQLException {
+        String sql = "UPDATE drugs SET stock_qty = stock_qty - ? WHERE id = ? AND stock_qty >= ?";
+
+        try (Connection connection = DBConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, quantityToReduce);
+            statement.setString(2, drugId);
+            statement.setInt(3, quantityToReduce);
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        }
+    }
+
+
     private DrugsEntity extractDrugsEntity(ResultSet resultSet) throws SQLException {
         return new DrugsEntity(
                 resultSet.getString("id"),

@@ -1,6 +1,7 @@
 package Repository;
 
 import DB.DBConnection;
+import Model.Dto.Sales;
 import Model.Dto.SalesDetails;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,5 +74,32 @@ public class SalesRepositoryImpl implements SalesRepository{
 
         }
         return salesDetails;
+    }
+
+    @Override
+    public void save(Sales sales) throws SQLException {
+        Connection connection=DBConnection.getInstance().getConnection();
+        String SQL="INSERT INTO Sales VALUES (?,?,?,?)";
+        PreparedStatement  preparedStatement=connection.prepareStatement(SQL);
+        preparedStatement.setObject(1,sales.getOrderid());
+        preparedStatement.setObject(2,sales.getPatientid());
+        preparedStatement.setObject(3,sales.getTotaldiscount());
+        preparedStatement.setObject(4,sales.getFinaltotal());
+        preparedStatement.executeUpdate();
+    }
+
+    @Override
+    public void insert(SalesDetails salesDetail) throws SQLException {
+        Connection connection=DBConnection.getInstance().getConnection();
+        String SQL="INSERT INTO Salesdetails VALUES (?,?,?,?,?,?,?)";
+        PreparedStatement  preparedStatement=connection.prepareStatement(SQL);
+        preparedStatement.setObject(1,salesDetail.getOrderId());
+        preparedStatement.setObject(2,salesDetail.getPatientId());
+        preparedStatement.setObject(3,salesDetail.getDrugid());
+        preparedStatement.setObject(4,salesDetail.getQuantity());
+        preparedStatement.setObject(5,salesDetail.getDiscount());
+        preparedStatement.setObject(6,salesDetail.getTotal());
+        preparedStatement.setObject(7,salesDetail.getOrderDate());
+        preparedStatement.executeUpdate();
     }
 }

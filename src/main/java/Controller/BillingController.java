@@ -1,8 +1,7 @@
 package Controller;
 
-import Model.Dto.CartItems;
-import Model.Dto.Drugs;
-import Model.Dto.Patients;
+import DB.DBConnection;
+import Model.Dto.*;
 import Service.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +21,9 @@ import javafx.util.Pair;
 
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -136,7 +137,7 @@ public class BillingController implements Initializable {
     }
 
     @FXML
-    void onpayment(ActionEvent event) {
+    void onpayment(ActionEvent event) throws SQLException {
         if (cartItems.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Empty Cart", "Please add items to cart before proceeding to payment.");
             return;
@@ -155,12 +156,107 @@ public class BillingController implements Initializable {
             double balance = receivedAmount - finalAmount;
             lblbalance.setText(String.format("Rs. %.2f", balance));
 
-            // Here you can save the sale to database
-//            saveSaleToDatabase();
+
+            SaveToDatabase();
 
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Invalid Amount", "Please enter a valid received amount.");
         }
+    }
+
+    private void SaveToDatabase() throws SQLException {
+        Connection connection = null;
+        try {
+
+            connection = DBConnection.getInstance().getConnection();
+            connection.setAutoCommit(false); // Start transaction
+
+            String orderid = lblOrderId.getText();
+            String patientid = txtid.getText();
+            Double totalDiscount = Double.parseDouble(lblDiscount.getText().replace("Rs. ", ""));
+            Double finaltotal = Double.parseDouble(lblFinalAmount.getText().replace("Rs. ", ""));
+
+
+            Sales sales = new Sales(orderid, patientid, totalDiscount, finaltotal);
+            salesService.save(sales); // Remove connection parameter
+
+
+            for (CartItems cartItem : cartItems) {
+
+                boolean stockUpdated = drugService.updateDrugStock(cartItem.getDrugid(), cartItem.getQuantity());
+
+                if (!stockUpdated) {
+                    throw new SQLException("Insufficient stock for drug ID: " + cartItem.getDrugid());
+                }
+
+
+                SalesDetails salesDetail = new SalesDetails(
+                        orderid,
+                        patientid,
+                        cartItem.getDrugid(),
+                        cartItem.getQuantity(),
+                        cartItem.getDiscount(),
+                        cartItem.getTotalprice(),
+                        LocalDate.now()
+                );
+                salesService.saveSalesDetails(salesDetail);
+            }
+
+            // Commit transaction
+            connection.commit();
+
+            // Show success message
+            showAlert(Alert.AlertType.INFORMATION, "Success",
+                    "Payment processed successfully! Order ID: " + orderid);
+
+            // Clear cart and reset form
+            clearCartAndForm();
+
+        } catch (SQLException e) {
+            // Rollback transaction in case of error
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            showAlert(Alert.AlertType.ERROR, "Transaction Failed",
+                    "Failed to process payment: " + e.getMessage());
+            throw e;
+        } finally {
+            // Restore auto-commit and close connection
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void clearCartAndForm() throws SQLException {
+        // Clear cart
+        cartItems.clear();
+        tblcart.setItems(cartItems);
+
+        // Reset totals
+        lblTotal.setText("Rs. 0.00");
+        lblDiscount.setText("Rs. 0.00");
+        lblFinalAmount.setText("Rs. 0.00");
+        lblFinaltotal.setText("Rs. 0.00");
+        lblbalance.setText("Rs. 0.00");
+
+        // Clear payment field
+        txtReceivedAmount.clear();
+
+        // Generate new order ID
+        generateOrderid();
+
+        // Refresh drugs table to show updated quantities
+        loadAllDrugs();
     }
 
     @FXML
@@ -291,7 +387,7 @@ public class BillingController implements Initializable {
 
         grid.add(new Label("Quantity:"), 0, 0);
         grid.add(quantityField, 1, 0);
-        grid.add(new Label("Discount (%):"), 0, 1);
+        grid.add(new Label("Discount :"), 0, 1);
         grid.add(discountField, 1, 1);
 
         dialog.getDialogPane().setContent(grid);
@@ -312,7 +408,7 @@ public class BillingController implements Initializable {
                 String discountStr = inputs.getValue();
 
                 int quantity = Integer.parseInt(quantityStr);
-                double discountPercent = Double.parseDouble(discountStr);
+                double discount = Double.parseDouble(discountStr);
 
                 // Validate quantity (existing validations)
                 if (quantity <= 0) {
@@ -326,21 +422,16 @@ public class BillingController implements Initializable {
                     return;
                 }
 
-                // Validate discount
-                if (discountPercent < 0 || discountPercent > 100) {
-                    showAlert(Alert.AlertType.ERROR, "Invalid Discount",
-                            "Discount must be between 0 and 100%.");
-                    return;
-                }
+
 
                 // Calculate prices
                 double totalPriceBeforeDiscount = selectedDrug.getUnitprice() * quantity;
-                double discountAmount = (totalPriceBeforeDiscount * discountPercent) / 100;
+                double discountAmount = discount;
                 double finalPrice = totalPriceBeforeDiscount - discountAmount;
 
                 // Create cart item
                 CartItems cartItem = new CartItems(patientId, selectedDrug.getId(),
-                        finalPrice, discountAmount);
+                        finalPrice, discountAmount,quantity);
 
                 // Add to cart
                 cartItems.add(cartItem);
@@ -349,7 +440,7 @@ public class BillingController implements Initializable {
 
                 showAlert(Alert.AlertType.INFORMATION, "Success",
                         "Added " + quantity + " of " + selectedDrug.getName() +
-                                " to cart with " + discountPercent + "% discount.");
+                                " to cart with " + discount + "discount.");
 
             } catch (NumberFormatException e) {
                 showAlert(Alert.AlertType.ERROR, "Invalid Input",

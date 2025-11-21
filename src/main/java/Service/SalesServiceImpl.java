@@ -1,16 +1,13 @@
 package Service;
 
-import Model.Dto.Patients;
+import Model.Dto.Sales;
 import Model.Dto.SalesDetails;
-import Model.Entity.PatientsEntity;
 import Repository.SalesRepository;
 import Repository.SalesRepositoryImpl;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SalesServiceImpl implements SalesService{
     SalesRepository salesRepository = new SalesRepositoryImpl();
@@ -50,6 +47,16 @@ public class SalesServiceImpl implements SalesService{
     public ObservableList<SalesDetails> searchsales(LocalDate date) throws SQLException {
         ObservableList<SalesDetails> salesDetails=salesRepository.searchsales(date);
         return salesDetails;
+    }
+
+    @Override
+    public void save(Sales sales) throws SQLException {
+        salesRepository.save(sales);
+    }
+
+    @Override
+    public void saveSalesDetails(SalesDetails salesDetail) throws SQLException {
+        salesRepository.insert(salesDetail);
     }
 
 
