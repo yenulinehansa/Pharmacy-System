@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="532.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SalesController">
+   <children>
+      <TableView fx:id="tblSales" layoutX="28.0" layoutY="137.0" prefHeight="354.0" prefWidth="855.0">
+        <columns>
+          <TableColumn fx:id="colOrderid" prefWidth="97.60000228881836" text="Order ID" />
+          <TableColumn fx:id="colPatientid" prefWidth="88.0" text="Patient ID" />
+            <TableColumn fx:id="colDrugid" prefWidth="95.19996643066406" text="Drug ID" />
+            <TableColumn fx:id="colQty" prefWidth="88.800048828125" text="Qty" />
+            <TableColumn fx:id="colDiscount" prefWidth="134.4000244140625" text="Discount" />
+            <TableColumn fx:id="colTotal" prefWidth="164.0" text="Total" />
+            <TableColumn fx:id="colOrderDate" prefWidth="188.800048828125" text="Order Date" />
+        </columns>
+      </TableView>
+      <Label layoutX="28.0" layoutY="56.0" text="Sales Details">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="datepicker" layoutX="28.0" layoutY="103.0" onAction="#onDateSelect" prefHeight="26.0" prefWidth="355.0" />
+      <Button fx:id="btnView" layoutX="393.0" layoutY="103.0" mnemonicParsing="false" onAction="#onview" style="-fx-background-color: rgba(99, 239, 43, 1);" text="View">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

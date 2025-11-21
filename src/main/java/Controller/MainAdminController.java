@@ -68,7 +68,7 @@ public class MainAdminController implements Initializable {
 
     @FXML
     private void loadSales() {
-        showAlert("Info", "Sales module coming soon!");
+        loadFXML("/View/Sales.fxml");
     }
 
     @FXML

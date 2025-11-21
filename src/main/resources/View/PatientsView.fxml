@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="508.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PatientViewController">
+<AnchorPane prefHeight="532.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PatientViewController">
     <children>
         <Label layoutX="35.0" layoutY="44.0" text="Patient Details">
             <font>
@@ -23,9 +22,9 @@
                 <TableColumn fx:id="colTelNo" prefWidth="166.39996337890625" text="TELNO" />
             </columns>
         </TableView>
-        <TextField fx:id="txtid" layoutX="666.0" layoutY="131.0" prefHeight="26.0" prefWidth="202.0" />
-        <TextField fx:id="txtname" layoutX="666.0" layoutY="195.0" prefHeight="26.0" prefWidth="202.0" />
-        <TextField fx:id="txtTelNo" layoutX="666.0" layoutY="255.0" prefHeight="26.0" prefWidth="202.0" />
+        <TextField fx:id="txtid" layoutX="666.0" layoutY="131.0" prefHeight="26.0" prefWidth="354.0" />
+        <TextField fx:id="txtname" layoutX="666.0" layoutY="195.0" prefHeight="26.0" prefWidth="354.0" />
+        <TextField fx:id="txtTelNo" layoutX="666.0" layoutY="255.0" prefHeight="26.0" prefWidth="354.0" />
         <Label layoutX="571.0" layoutY="133.0" text="ID :">
             <font>
                 <Font name="System Bold" size="15.0" />
@@ -41,12 +40,12 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Label>
-        <Button fx:id="btnupdate" layoutX="577.0" layoutY="348.0" mnemonicParsing="false" onAction="#onupdate" prefHeight="46.0" prefWidth="87.0" style="-fx-background-color: rgba(65, 201, 44, 1);" text="Update">
+        <Button fx:id="btnupdate" layoutX="710.0" layoutY="348.0" mnemonicParsing="false" onAction="#onupdate" prefHeight="46.0" prefWidth="87.0" style="-fx-background-color: rgba(65, 201, 44, 1);" text="Update">
             <font>
                 <Font size="17.0" />
             </font>
         </Button>
-        <Button fx:id="btndelete" layoutX="679.0" layoutY="348.0" mnemonicParsing="false" onAction="#ondelete" prefHeight="46.0" prefWidth="87.0" style="-fx-background-color: rgba(201, 44, 44, 1);" text="Delete">
+        <Button fx:id="btndelete" layoutX="856.0" layoutY="348.0" mnemonicParsing="false" onAction="#ondelete" prefHeight="46.0" prefWidth="87.0" style="-fx-background-color: rgba(201, 44, 44, 1);" text="Delete">
             <font>
                 <Font size="17.0" />
             </font>
