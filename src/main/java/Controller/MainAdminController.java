@@ -88,7 +88,7 @@ public class MainAdminController implements Initializable {
 
     @FXML
     private void loadBilling() {
-        showAlert("Info", "Billing module coming soon!");
+        loadFXML("/View/Billing.fxml");
     }
 
     private void loadFXML(String fxmlPath) {

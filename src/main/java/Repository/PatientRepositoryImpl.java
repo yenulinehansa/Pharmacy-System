@@ -92,4 +92,52 @@ public class PatientRepositoryImpl implements PatientRepository {
 
 
 }
+
+    @Override
+    public String generatelastid() throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String SQL = "SELECT id FROM Patients ORDER BY id DESC LIMIT 1";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getString("id");
+        }
+        return null;
+    }
+
+    @Override
+    public void insert(PatientsEntity patientsentity) throws SQLException {
+        Connection connection=DBConnection.getInstance().getConnection();
+        String SQL="INSERT INTO patients VALUES (?,?,?)";
+        PreparedStatement preparedStatement=connection.prepareStatement(SQL);
+        preparedStatement.setString(1, patientsentity.getId());
+        preparedStatement.setString(2, patientsentity.getName());
+        preparedStatement.setString(3, patientsentity.getTelNo());
+        preparedStatement.executeUpdate();
+
+
+    }
+
+    @Override
+    public PatientsEntity findPatientByTelno(String telno) throws SQLException {
+        String sql = "SELECT * FROM patients WHERE telNo = ?";
+
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql) ;
+
+        statement.setString(1, telno);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return new PatientsEntity(
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("telNo")
+                );
+            }
+
+        }
+       return null;
+    }
 }

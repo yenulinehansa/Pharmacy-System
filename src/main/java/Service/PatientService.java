@@ -10,4 +10,10 @@ public interface PatientService {
     boolean updatePatient(Patients patient) throws SQLException;
     boolean deletePatient(String patientId) throws SQLException;
     Patients findPatientById(String patientId) throws SQLException;
+
+    String generatenewId() throws SQLException;
+
+    void save(Patients patient) throws SQLException;
+
+    Patients findpatientByTelno(String telno) throws SQLException;
 }

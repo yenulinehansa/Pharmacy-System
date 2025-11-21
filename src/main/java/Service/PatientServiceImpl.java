@@ -52,4 +52,47 @@ public class PatientServiceImpl implements PatientService {
         }
         return null;
     }
+
+    @Override
+    public String generatenewId() throws SQLException {
+        String lastId=patientRepository.generatelastid();
+        if (lastId == null) {
+
+            return "P001";
+        }
+
+        try {
+            // Extract the numeric part and increment
+            String prefix = "P";
+            String numericPart = lastId.substring(1);
+            int number = Integer.parseInt(numericPart);
+            number++; // Increment the number
+
+
+            return String.format("%s%03d", prefix, number);
+        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
+
+            return "P001";
+        }
+    }
+
+    @Override
+    public void save(Patients patient) throws SQLException {
+        PatientsEntity patientsentity = new PatientsEntity(
+                patient.getId(),
+                patient.getName(),
+                patient.getTelNo()
+        );
+        patientRepository.insert(patientsentity);
+    }
+
+    @Override
+    public Patients findpatientByTelno(String telno) throws SQLException {
+        PatientsEntity patientsEntity=patientRepository.findPatientByTelno(telno);
+        return new Patients(
+                patientsEntity.getId(),
+                patientsEntity.getName(),
+                patientsEntity.getTelNo()
+        );
+    }
 }

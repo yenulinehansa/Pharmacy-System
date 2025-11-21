@@ -10,4 +10,10 @@ public interface PatientRepository {
     boolean updatePatient(PatientsEntity patient) throws SQLException;
     boolean deletePatient(String patientId) throws SQLException;
     PatientsEntity findPatientById(String patientId) throws SQLException;
+
+    String generatelastid() throws SQLException;
+
+    void insert(PatientsEntity patientsentity) throws SQLException;
+
+    PatientsEntity findPatientByTelno(String telno) throws SQLException;
 }
