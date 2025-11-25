@@ -92,11 +92,11 @@ public class MainStaffController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
-            // Clear previous content and add new content
+
             contentPane.getChildren().clear();
             contentPane.getChildren().add(root);
 
-            // Set anchors to make content fill the entire area
+
             AnchorPane.setTopAnchor(root, 0.0);
             AnchorPane.setBottomAnchor(root, 0.0);
             AnchorPane.setLeftAnchor(root, 0.0);
@@ -116,14 +116,14 @@ public class MainStaffController implements Initializable {
     }
     public void onBacktologin() {
         try {
-            // Make sure this path is correct
+
             Parent root = FXMLLoader.load(getClass().getResource("/View/FrontPage.fxml")); // Example path
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Close current window
+
             Stage currentStage = (Stage) btnlogin.getScene().getWindow();
             currentStage.close();
         } catch (Exception e) {
