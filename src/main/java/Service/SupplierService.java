@@ -14,4 +14,9 @@ public interface SupplierService {
     String generateNextSupplierId() throws SQLException;
 
     List<String> getAllSupplierIds() throws SQLException;
+
+    void addDrugSupplierRelationship(String drugId, String supplierId) throws SQLException;
+    List<Suppliers> getSuppliersForDrug(String drugId) throws SQLException;
+
+    void createLowStockAlert(String id, String id1, int stockQty) throws SQLException;
 }

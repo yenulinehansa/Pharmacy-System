@@ -26,10 +26,13 @@ import java.util.ResourceBundle;
 
 public class StockUpdateController implements Initializable {
 
+
     StockUpdateService stockUpdateService = new StockUpdateServiceImpl();
     ObservableList<StockUpdate> stockUpdateList = FXCollections.observableArrayList();
     SupplierService supplierService = new SupplierServiceImpl();
     DrugService drugService=new DrugServiceImpl();
+    @FXML
+    private Button btnCheckLowStock;
 
     @FXML
     private Button btnRestock;
@@ -67,30 +70,53 @@ public class StockUpdateController implements Initializable {
     @FXML
     private TextField txtQty;
 
-    public StockUpdateController() throws SQLException {
-    }
+
 
     @FXML
     void onRestock(ActionEvent event) throws SQLException {
         try {
             if (validateInput()) {
+
+                String supplierId = comboSuppliers.getValue();
+                String drugId = comboDrugs.getValue();
+
+                System.out.println("Supplier ID: " + supplierId);
+                System.out.println("Drug ID: " + drugId);
+
+                if (supplierId == null || drugId == null) {
+                    showAlert(Alert.AlertType.ERROR, "Selection Error",
+                            "Please select both a supplier and a drug.");
+                    return;
+                }
+
                 StockUpdate stockUpdate = new StockUpdate(
-                        comboSuppliers.getValue(),
-                        comboDrugs.getValue(),
+                        supplierId,
+                        drugId,
                         Integer.parseInt(txtQty.getText()),
                         Double.parseDouble(txtPrice.getText()),
                         LocalDate.now()
                 );
 
                 stockUpdateService.addStockUpdate(stockUpdate);
+
+                // AUTO-UPDATE DRUG STOCK QUANTITY
+                drugService.updateDrugStock(drugId, Integer.parseInt(txtQty.getText()));
+
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Stock restocked successfully!");
                 clearFields();
                 loadAllStockUpdates();
                 loadComboBoxData();
+
+                // Check if this establishes a new supplier relationship
+                establishSupplierRelationship(supplierId, drugId);
             }
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Input Error", "Please enter valid quantity and price.");
         }
+    }
+
+    private void establishSupplierRelationship(String supplierId, String drugId) throws SQLException {
+        supplierService.addDrugSupplierRelationship(drugId, supplierId);
     }
 
     @FXML
@@ -197,9 +223,20 @@ public class StockUpdateController implements Initializable {
     }
 
     private boolean validateInput() {
-        if (comboSuppliers.getValue() == null ||
-                comboDrugs.getValue() == null ||
-                txtQty.getText().trim().isEmpty() ||
+        String supplierId = comboSuppliers.getValue();
+        String drugId = comboDrugs.getValue();
+
+        if (supplierId == null || supplierId.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Please select a supplier.");
+            return false;
+        }
+
+        if (drugId == null || drugId.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Please select a drug.");
+            return false;
+        }
+
+        if (txtQty.getText().trim().isEmpty() ||
                 txtPrice.getText().trim().isEmpty()) {
 
             showAlert(Alert.AlertType.WARNING, "Validation Error", "Please fill all fields.");
@@ -263,5 +300,15 @@ public class StockUpdateController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    @FXML
+    void onCheckLowStock(ActionEvent event) {
+        try {
+            LowStockAlertService alertService = new LowStockAlertService();
+            alertService.checkLowStockAndNotifySuppliers();
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Low stock check completed and suppliers notified!");
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to check low stock: " + e.getMessage());
+        }
     }
 }

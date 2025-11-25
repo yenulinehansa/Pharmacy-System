@@ -1,5 +1,6 @@
 package Repository;
 
+import Model.Dto.Suppliers;
 import Model.Entity.SuppliersEntity;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,4 +15,10 @@ public interface SupplierRepository {
     String getLastSupplierId() throws SQLException;
 
     List<String> getSuppliersIds() throws SQLException;
+
+    List<Suppliers> getsupplierfordrug(String drugId) throws SQLException;
+
+    void adddrugsupplierrelationship(String drugId, String supplierId) throws SQLException;
+
+    void createlowstockalert(String supplierId, String drugId, int currentStock) throws SQLException;
 }

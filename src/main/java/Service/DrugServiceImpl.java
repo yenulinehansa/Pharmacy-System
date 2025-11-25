@@ -1,11 +1,13 @@
 package Service;
 
 import Model.Dto.Drugs;
+import Model.Dto.Suppliers;
 import Model.Entity.DrugsEntity;
 import Repository.DrugRepository;
 import Repository.DrugRepositoryImpl;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -106,6 +108,45 @@ public class DrugServiceImpl implements DrugService {
         return drugRepository.quantityupdate(drugid,quantity);
     }
 
+    @Override
+    public int getExpiredDrugsCount() throws SQLException {
+        List<Drugs> drugs = getAllDrugs();
+        int count = 0;
+
+        LocalDate today = LocalDate.now();
+
+        for (Drugs drug : drugs) {
+            if (drug.getExpDate().isBefore(today)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int getOutOfStockCount() throws SQLException {
+        List<Drugs> drugs = getAllDrugs();
+        int count = 0;
+
+        for (Drugs drug : drugs) {
+            if (drug.getStock_qty() == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public void updateDrugStock(String drugId, int quantityToAdd) throws SQLException {
+        drugRepository.updatedrugstock(drugId,quantityToAdd);
+
+    }
+
+    @Override
+    public List<Drugs> getLowStockDrugs(int threshold) throws SQLException {
+        List<Drugs> drugsList=drugRepository.getLowstockDrugs(threshold);
+        return drugsList;
+    }
 
     private Drugs convertToDto(DrugsEntity entity) {
         if (entity == null) return null;
@@ -118,4 +159,5 @@ public class DrugServiceImpl implements DrugService {
                 entity.getExpDate()
         );
     }
+
 }

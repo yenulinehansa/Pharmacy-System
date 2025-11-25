@@ -1,5 +1,6 @@
 package Service;
 
+import Model.Dto.Drugs;
 import Model.Dto.Suppliers;
 import Model.Entity.SuppliersEntity;
 import Repository.SupplierRepository;
@@ -80,6 +81,24 @@ public class SupplierServiceImpl implements SupplierService {
         return ids;
     }
 
+    @Override
+    public List<Suppliers> getSuppliersForDrug(String drugId) throws SQLException {
+        List<Suppliers> suppliers=supplierRepository.getsupplierfordrug(drugId);
+        return  suppliers;
+
+    }
+
+    @Override
+    public void addDrugSupplierRelationship(String drugId, String supplierId) throws SQLException {
+        supplierRepository.adddrugsupplierrelationship(drugId,supplierId);
+
+    }
+
+    @Override
+    public void createLowStockAlert(String supplierId, String drugId, int currentStock) throws SQLException {
+        supplierRepository.createlowstockalert(supplierId,drugId,currentStock);
+
+    }
     private Suppliers convertToDto(SuppliersEntity entity) {
         if (entity == null) return null;
         return new Suppliers(

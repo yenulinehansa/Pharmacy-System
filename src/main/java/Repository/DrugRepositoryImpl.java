@@ -1,6 +1,7 @@
 package Repository;
 
 import DB.DBConnection;
+import Model.Dto.Drugs;
 import Model.Entity.DrugsEntity;
 
 import java.sql.Connection;
@@ -149,6 +150,39 @@ public class DrugRepositoryImpl implements DrugRepository {
         preparedStatement.setObject(1,quantity);
         preparedStatement.setObject(2,drugid);
         return preparedStatement.executeUpdate()>0;
+    }
+
+    @Override
+    public void updatedrugstock(String drugId, int quantityToAdd) throws SQLException {
+        Connection connection=DBConnection.getInstance().getConnection();
+        String sql = "UPDATE drugs SET stock_qty = stock_qty + ? WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1,quantityToAdd);
+        preparedStatement.setObject(2,drugId);
+        preparedStatement.executeUpdate();
+
+    }
+
+    @Override
+    public List<Drugs> getLowstockDrugs(int threshold) throws SQLException {
+        List<Drugs> drugsList = new ArrayList<>();
+        Connection connection=DBConnection.getInstance().getConnection();
+        String sql = "SELECT * FROM drugs WHERE stock_qty <= ?";
+        PreparedStatement  preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1,threshold);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            Drugs drug = new Drugs();
+            drug.setId(resultSet.getString("id"));
+            drug.setName(resultSet.getString("name"));
+            drug.setBrand(resultSet.getString("brand"));
+            drug.setUnitprice(resultSet.getDouble("unitprice"));
+            drug.setStock_qty(resultSet.getInt("stock_qty"));
+            drug.setExpDate(resultSet.getDate("expDate").toLocalDate());
+            drugsList.add(drug);
+        }
+        return drugsList;
     }
 
 

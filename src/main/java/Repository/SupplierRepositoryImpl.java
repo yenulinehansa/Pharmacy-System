@@ -1,6 +1,7 @@
 package Repository;
 
 import DB.DBConnection;
+import Model.Dto.Suppliers;
 import Model.Entity.SuppliersEntity;
 
 import java.sql.*;
@@ -125,6 +126,80 @@ public class SupplierRepositoryImpl implements SupplierRepository {
 
         return ids;
     }
+
+    @Override
+    public List<Suppliers> getsupplierfordrug(String drugId) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String sql = "SELECT s.* FROM suppliers s " +
+                "JOIN drug_supplier ds ON s.id = ds.supplier_id " +
+                "WHERE ds.drug_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, drugId); // Use setString instead of setObject
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Suppliers> suppliersList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            Suppliers supplier = new Suppliers(
+                    resultSet.getString("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("telNo"),
+                    resultSet.getString("email"),
+                    resultSet.getString("company"),
+                    resultSet.getDate("regDate").toLocalDate()
+            );
+            suppliersList.add(supplier);
+        }
+
+
+
+        return suppliersList;
+    }
+
+    @Override
+    public void adddrugsupplierrelationship(String drugId, String supplierId) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String sql = "INSERT INTO drug_supplier (drug_id, supplier_id) VALUES (?, ?) " +
+                "ON DUPLICATE KEY UPDATE supplier_id = supplier_id";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, drugId);
+            preparedStatement.setString(2, supplierId);
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Drug-Supplier relationship established: Drug=" + drugId + ", Supplier=" + supplierId);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error establishing drug-supplier relationship: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void createlowstockalert(String supplierId, String drugId, int currentStock) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String sql = "INSERT INTO low_stock_alerts (supplier_id, drug_id, current_stock, alert_date, status) " +
+                "VALUES (?, ?, ?, CURDATE(), 'PENDING')";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, supplierId);
+            preparedStatement.setString(2, drugId);
+            preparedStatement.setInt(3, currentStock);
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Low stock alert created for Supplier=" + supplierId +
+                        ", Drug=" + drugId + ", Current Stock=" + currentStock);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error creating low stock alert: " + e.getMessage());
+            throw e;
+        }
+    }
+
 
     private SuppliersEntity extractSuppliersEntity(ResultSet resultSet) throws SQLException {
         return new SuppliersEntity(

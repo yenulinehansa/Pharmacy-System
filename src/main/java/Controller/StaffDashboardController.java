@@ -37,10 +37,24 @@ public class StaffDashboardController implements Initializable {
     }
 
     private void loadexpitems() {
+        try {
+            int expiredCount = drugService.getExpiredDrugsCount();
+            lblExpiredItems.setText(String.valueOf(expiredCount));
+        } catch (SQLException e) {
+            lblExpiredItems.setText("0");
+            e.printStackTrace();
+        }
 
     }
 
     private void loadstock() {
+        try {
+            int outOfStockCount = drugService.getOutOfStockCount();
+            lblOutOfStock.setText(String.valueOf(outOfStockCount));
+        } catch (SQLException e) {
+            lblOutOfStock.setText("0");
+            e.printStackTrace();
+        }
     }
 
     private void loadsales() throws SQLException {

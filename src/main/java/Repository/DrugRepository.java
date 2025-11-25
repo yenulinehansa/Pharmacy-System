@@ -1,5 +1,6 @@
 package Repository;
 
+import Model.Dto.Drugs;
 import Model.Entity.DrugsEntity;
 
 import java.sql.SQLException;
@@ -20,4 +21,8 @@ public interface DrugRepository {
     int loaddrugscount() throws SQLException;
 
     Boolean quantityupdate(String drugid, int quantity) throws SQLException;
+
+    void updatedrugstock(String drugId, int quantityToAdd) throws SQLException;
+
+    List<Drugs> getLowstockDrugs(int threshold) throws SQLException;
 }

@@ -50,7 +50,7 @@ public class BillingController implements Initializable {
     private Button btnregister;
 
     @FXML
-    private TableColumn<?, ?> colavailability;
+    private TableColumn<Drugs,String > colavailability;
 
     @FXML
     private TableColumn<?, ?> colbrand;
@@ -283,7 +283,22 @@ public class BillingController implements Initializable {
         colbrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
         colunitprice.setCellValueFactory(new PropertyValueFactory<>("unitprice"));
         colqty.setCellValueFactory(new PropertyValueFactory<>("stock_qty"));
-        colavailability.setCellValueFactory(new PropertyValueFactory<>("expDate"));
+        colavailability.setCellValueFactory(cellData -> {
+            Drugs drug = cellData.getValue();
+            LocalDate expDate = drug.getExpDate();
+            LocalDate today = LocalDate.now();
+
+            String status;
+
+            if (expDate.isBefore(today)) {
+                status = "Expired";
+            } else {
+                status = "Not Expired";
+            }
+
+            return new javafx.beans.property.SimpleStringProperty(status);
+        });
+
 
         loadAllDrugs();
 
