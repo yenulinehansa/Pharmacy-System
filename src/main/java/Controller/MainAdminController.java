@@ -2,21 +2,28 @@ package Controller;
 
 import Model.Dto.Users;
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainAdminController implements Initializable {
 
+
     @FXML private Label lblUser;
     @FXML private AnchorPane contentPane;
+    @FXML
+    private Button btnlogin;
     @FXML
     private Button btnBilling;
 
@@ -50,7 +57,7 @@ public class MainAdminController implements Initializable {
     public void setUser(Users user) {
         this.currentUser = user;
         if (user != null && lblUser != null) {
-            lblUser.setText(user.getName());
+            lblUser.setText("Admin " + user.getName());
         }
     }
 
@@ -135,4 +142,24 @@ public class MainAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadDashboard();
     }
+
+    public void onBacktologin() {
+        try {
+            // Make sure this path is correct
+            Parent root = FXMLLoader.load(getClass().getResource("/View/FrontPage.fxml")); // Example path
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close current window
+            Stage currentStage = (Stage) btnlogin.getScene().getWindow();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load login page: " + e.getMessage());
+        }
+    }
+
+
 }
