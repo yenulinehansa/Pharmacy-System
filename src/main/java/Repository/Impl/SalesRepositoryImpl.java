@@ -1,8 +1,9 @@
-package Repository;
+package Repository.Impl;
 
 import DB.DBConnection;
 import Model.Dto.Sales;
 import Model.Dto.SalesDetails;
+import Repository.SalesRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class SalesRepositoryImpl implements SalesRepository{
+public class SalesRepositoryImpl implements SalesRepository {
 
     @Override
     public String generatelastID() throws SQLException {

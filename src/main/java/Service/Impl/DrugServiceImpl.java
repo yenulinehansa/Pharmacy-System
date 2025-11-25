@@ -1,10 +1,10 @@
-package Service;
+package Service.Impl;
 
 import Model.Dto.Drugs;
-import Model.Dto.Suppliers;
 import Model.Entity.DrugsEntity;
 import Repository.DrugRepository;
-import Repository.DrugRepositoryImpl;
+import Repository.Impl.DrugRepositoryImpl;
+import Service.DrugService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

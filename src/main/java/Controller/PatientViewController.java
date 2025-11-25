@@ -1,7 +1,7 @@
 package Controller;
 
 import Service.PatientService;
-import Service.PatientServiceImpl;
+import Service.Impl.PatientServiceImpl;
 import Model.Dto.Patients;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

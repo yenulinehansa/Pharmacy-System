@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Dto.Users;
 import Service.UserService;
-import Service.UserServiceImpl;
+import Service.Impl.UserServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

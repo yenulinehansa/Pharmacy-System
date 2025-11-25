@@ -1,13 +1,12 @@
-package Service;
+package Service.Impl;
 
 import Model.Dto.StockUpdate;
-import Model.Entity.StockUpdateEntity;
 import Repository.StockUpdateRepository;
-import Repository.StockUpdateRepositoryImpl;
+import Repository.Impl.StockUpdateRepositoryImpl;
+import Service.StockUpdateService;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
-import java.util.stream.Collectors;
 
 public class StockUpdateServiceImpl implements StockUpdateService {
     StockUpdateRepository stockUpdateRepository=new StockUpdateRepositoryImpl();

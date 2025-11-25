@@ -1,8 +1,9 @@
-package Repository;
+package Repository.Impl;
 
 import DB.DBConnection;
 import Model.Dto.Suppliers;
 import Model.Entity.SuppliersEntity;
+import Repository.SupplierRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

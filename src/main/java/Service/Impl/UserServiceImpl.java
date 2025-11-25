@@ -1,9 +1,10 @@
-package Service;
+package Service.Impl;
 
 import Model.Dto.Users;
 import Model.Entity.UsersEntity;
 import Repository.UserRepository;
-import Repository.UserRepositoryImpl;
+import Repository.Impl.UserRepositoryImpl;
+import Service.UserService;
 
 import java.sql.SQLException;
 import java.util.List;

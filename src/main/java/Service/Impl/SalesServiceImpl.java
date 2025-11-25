@@ -1,18 +1,20 @@
-package Service;
+package Service.Impl;
 
 import DB.DBConnection;
 import Model.Dto.CartItems;
 import Model.Dto.Sales;
 import Model.Dto.SalesDetails;
 import Repository.SalesRepository;
-import Repository.SalesRepositoryImpl;
+import Repository.Impl.SalesRepositoryImpl;
+import Service.DrugService;
+import Service.SalesService;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class SalesServiceImpl implements SalesService{
+public class SalesServiceImpl implements SalesService {
     SalesRepository salesRepository = new SalesRepositoryImpl();
     DrugService drugService=new DrugServiceImpl();
 

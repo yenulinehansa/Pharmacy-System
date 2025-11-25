@@ -1,8 +1,8 @@
-package Repository;
+package Repository.Impl;
 
 import DB.DBConnection;
 import Model.Dto.StockUpdate;
-import Model.Entity.StockUpdateEntity;
+import Repository.StockUpdateRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

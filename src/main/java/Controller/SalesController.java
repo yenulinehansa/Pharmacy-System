@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Dto.SalesDetails;
 import Service.SalesService;
-import Service.SalesServiceImpl;
+import Service.Impl.SalesServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

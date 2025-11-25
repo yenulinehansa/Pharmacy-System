@@ -1,7 +1,9 @@
-package Repository;
+package Repository.Impl;
 
 import Model.Entity.PatientsEntity;
 import DB.DBConnection;
+import Repository.PatientRepository;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

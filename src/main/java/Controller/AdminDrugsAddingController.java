@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Dto.Drugs;
 import Service.DrugService;
-import Service.DrugServiceImpl;
+import Service.Impl.DrugServiceImpl;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

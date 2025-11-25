@@ -2,6 +2,9 @@ package Controller;
 
 import Model.Dto.*;
 import Service.*;
+import Service.Impl.DrugServiceImpl;
+import Service.Impl.PatientServiceImpl;
+import Service.Impl.SalesServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

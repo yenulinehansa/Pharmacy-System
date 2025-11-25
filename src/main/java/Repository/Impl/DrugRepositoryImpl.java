@@ -1,8 +1,9 @@
-package Repository;
+package Repository.Impl;
 
 import DB.DBConnection;
 import Model.Dto.Drugs;
 import Model.Entity.DrugsEntity;
+import Repository.DrugRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

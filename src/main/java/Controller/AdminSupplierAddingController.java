@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Dto.Suppliers;
 import Service.SupplierService;
-import Service.SupplierServiceImpl;
+import Service.Impl.SupplierServiceImpl;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

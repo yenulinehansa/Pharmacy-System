@@ -1,9 +1,10 @@
-package Service;
+package Service.Impl;
 
 import Repository.PatientRepository;
-import Repository.PatientRepositoryImpl;
+import Repository.Impl.PatientRepositoryImpl;
 import Model.Dto.Patients;
 import Model.Entity.PatientsEntity;
+import Service.PatientService;
 
 import java.sql.SQLException;
 import java.util.List;

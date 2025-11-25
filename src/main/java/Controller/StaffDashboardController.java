@@ -1,9 +1,9 @@
 package Controller;
 
 import Service.DrugService;
-import Service.DrugServiceImpl;
+import Service.Impl.DrugServiceImpl;
 import Service.SalesService;
-import Service.SalesServiceImpl;
+import Service.Impl.SalesServiceImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

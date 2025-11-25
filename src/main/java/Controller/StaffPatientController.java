@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Dto.Patients;
 import Service.PatientService;
-import Service.PatientServiceImpl;
+import Service.Impl.PatientServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class StaffPatientController implements Initializable {

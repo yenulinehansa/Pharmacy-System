@@ -1,7 +1,8 @@
-package Repository;
+package Repository.Impl;
 
 import DB.DBConnection;
 import Model.Entity.UsersEntity;
+import Repository.UserRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
