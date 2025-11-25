@@ -16,7 +16,9 @@ public interface SalesRepository {
 
     ObservableList<SalesDetails> searchsales(LocalDate date) throws SQLException;
 
-    void save(Sales sales) throws SQLException;
+    Boolean save(Sales sales) throws SQLException;
 
-    void insert(SalesDetails salesDetail) throws SQLException;
+    Boolean insert(SalesDetails salesDetail) throws SQLException;
+
+    int getsalescount() throws SQLException;
 }

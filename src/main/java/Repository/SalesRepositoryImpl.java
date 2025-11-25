@@ -77,7 +77,7 @@ public class SalesRepositoryImpl implements SalesRepository{
     }
 
     @Override
-    public void save(Sales sales) throws SQLException {
+    public Boolean save(Sales sales) throws SQLException {
         Connection connection=DBConnection.getInstance().getConnection();
         String SQL="INSERT INTO Sales VALUES (?,?,?,?)";
         PreparedStatement  preparedStatement=connection.prepareStatement(SQL);
@@ -85,11 +85,12 @@ public class SalesRepositoryImpl implements SalesRepository{
         preparedStatement.setObject(2,sales.getPatientid());
         preparedStatement.setObject(3,sales.getTotaldiscount());
         preparedStatement.setObject(4,sales.getFinaltotal());
-        preparedStatement.executeUpdate();
+        return preparedStatement.executeUpdate() >0;
+
     }
 
     @Override
-    public void insert(SalesDetails salesDetail) throws SQLException {
+    public Boolean insert(SalesDetails salesDetail) throws SQLException {
         Connection connection=DBConnection.getInstance().getConnection();
         String SQL="INSERT INTO Salesdetails VALUES (?,?,?,?,?,?,?)";
         PreparedStatement  preparedStatement=connection.prepareStatement(SQL);
@@ -100,6 +101,29 @@ public class SalesRepositoryImpl implements SalesRepository{
         preparedStatement.setObject(5,salesDetail.getDiscount());
         preparedStatement.setObject(6,salesDetail.getTotal());
         preparedStatement.setObject(7,salesDetail.getOrderDate());
-        preparedStatement.executeUpdate();
+        return preparedStatement.executeUpdate() >0;
+
+    }
+
+    @Override
+    public int getsalescount() throws SQLException {
+        ObservableList<Sales> salesDetails = FXCollections.observableArrayList();
+        Connection connection=DBConnection.getInstance().getConnection();
+        String SQL = "SELECT * FROM Sales";
+        PreparedStatement preparedStatement=connection.prepareStatement(SQL);
+        ResultSet resultSet=preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            salesDetails.add(new Sales(
+                    resultSet.getString("Orderid"),
+                    resultSet.getString("Patientid"),
+                    resultSet.getDouble("Totaldiscount"),
+                    resultSet.getDouble("FinalTotal")
+
+
+            ));
+
+
+        }
+        return salesDetails.size();
     }
 }

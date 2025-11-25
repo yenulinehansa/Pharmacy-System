@@ -16,4 +16,8 @@ public interface DrugService {
 
 
     List<String> getAllDrugIds() throws SQLException;
+
+    int loaddrugscount() throws SQLException;
+
+    Boolean quantityupdate(String drugid, int quantity) throws SQLException;
 }

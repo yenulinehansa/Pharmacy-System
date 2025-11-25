@@ -95,6 +95,17 @@ public class DrugServiceImpl implements DrugService {
         return ids;
     }
 
+    @Override
+    public int loaddrugscount() throws SQLException {
+        int drugscount=drugRepository.loaddrugscount();
+        return  drugscount;
+    }
+
+    @Override
+    public Boolean quantityupdate(String drugid, int quantity) throws SQLException {
+        return drugRepository.quantityupdate(drugid,quantity);
+    }
+
 
     private Drugs convertToDto(DrugsEntity entity) {
         if (entity == null) return null;

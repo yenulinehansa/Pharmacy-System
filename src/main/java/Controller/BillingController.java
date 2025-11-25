@@ -144,6 +144,9 @@ public class BillingController implements Initializable {
         try {
             double receivedAmount = Double.parseDouble(txtReceivedAmount.getText());
             double finalAmount = Double.parseDouble(lblFinalAmount.getText().replace("Rs. ", ""));
+            String orderid=lblOrderId.getText();
+            String patientid=txtid.getText();
+            Double totalDiscount=Double.parseDouble(lblDiscount.getText().replace("Rs. ", ""));
 
             if (receivedAmount < finalAmount) {
                 showAlert(Alert.AlertType.ERROR, "Insufficient Amount",
@@ -155,36 +158,75 @@ public class BillingController implements Initializable {
             lblbalance.setText(String.format("Rs. %.2f", balance));
 
 
-            SaveToDatabase();
+//            SaveToDatabase();
+            salesService.placefullOrder(orderid,patientid,totalDiscount,finalAmount,cartItems);
+            showAlert(Alert.AlertType.INFORMATION, "Payment Successful",
+                    "Order completed successfully!");
+
+
+            resetForNextPayment();
+
 
         } catch (NumberFormatException e) {
             showAlert(Alert.AlertType.ERROR, "Invalid Amount", "Please enter a valid received amount.");
         }
+
     }
 
-    private void SaveToDatabase() throws SQLException {
-        String orderid=lblOrderId.getText();
-        String patientid=txtid.getText();
-        Double totalDiscount=Double.parseDouble(lblDiscount.getText().replace("Rs. ", ""));
-        Double finaltotal=Double.parseDouble(lblTotal.getText().replace("Rs. ", ""));
-        Sales sales=new Sales(orderid,patientid,totalDiscount,finaltotal);
-        salesService.save(sales);
+    private void resetForNextPayment() {
+        // Clear cart
+        cartItems.clear();
+        tblcart.setItems(cartItems);
 
+        // Reset totals
+        lblTotal.setText("Rs. 0.00");
+        lblDiscount.setText("Rs. 0.00");
+        lblFinalAmount.setText("Rs. 0.00");
+        lblFinaltotal.setText("Rs. 0.00");
+        lblbalance.setText("Rs. 0.00");
 
-        for (CartItems cartItem : cartItems) {
-            SalesDetails salesDetail = new SalesDetails(
-                    orderid,
-                    patientid,
-                    cartItem.getDrugid(),
-                    cartItem.getQuantity(),
-                    cartItem.getDiscount(),
-                    cartItem.getTotalprice(),
-                    LocalDate.now()
-            );
+        // Clear patient fields
+        txtid.clear();
+        txtname.clear();
+        txttelno.clear();
+        txtReceivedAmount.clear();
 
-            salesService.saveSalesDetails(salesDetail);
+        // Reload drugs table
+        drugsList.clear();
+        loadAllDrugs();
+
+        // Generate new Order ID
+        try {
+            generateOrderid();
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to generate new Order ID");
         }
     }
+
+
+//    private void SaveToDatabase() throws SQLException {
+//        String orderid=lblOrderId.getText();
+//        String patientid=txtid.getText();
+//        Double totalDiscount=Double.parseDouble(lblDiscount.getText().replace("Rs. ", ""));
+//        Double finaltotal=Double.parseDouble(lblTotal.getText().replace("Rs. ", ""));
+//        Sales sales=new Sales(orderid,patientid,totalDiscount,finaltotal);
+//        salesService.save(sales);
+//
+//
+//        for (CartItems cartItem : cartItems) {
+//            SalesDetails salesDetail = new SalesDetails(
+//                    orderid,
+//                    patientid,
+//                    cartItem.getDrugid(),
+//                    cartItem.getQuantity(),
+//                    cartItem.getDiscount(),
+//                    cartItem.getTotalprice(),
+//                    LocalDate.now()
+//            );
+//
+//            salesService.saveSalesDetails(salesDetail);
+//        }
+//    }
 
     @FXML
     void onregister(ActionEvent event) throws SQLException {

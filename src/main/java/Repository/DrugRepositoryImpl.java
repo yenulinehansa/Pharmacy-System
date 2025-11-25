@@ -126,6 +126,31 @@ public class DrugRepositoryImpl implements DrugRepository {
         return ids;
     }
 
+    @Override
+    public int loaddrugscount() throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String SQL = "SELECT * FROM Drugs ";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<DrugsEntity> drugsList = new ArrayList<>();
+        while (resultSet.next()) {
+            drugsList.add(extractDrugsEntity(resultSet));
+
+        }
+        return drugsList.size();
+    }
+
+    @Override
+    public Boolean quantityupdate(String drugid, int quantity) throws SQLException {
+        Connection connection=DBConnection.getInstance().getConnection();
+        String SQL="UPDATE drugs SET stock_qty=stock_qty-? WHERE id=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(SQL);
+        preparedStatement.setObject(1,quantity);
+        preparedStatement.setObject(2,drugid);
+        return preparedStatement.executeUpdate()>0;
+    }
+
 
     private DrugsEntity extractDrugsEntity(ResultSet resultSet) throws SQLException {
         return new DrugsEntity(
