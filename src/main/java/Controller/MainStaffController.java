@@ -1,6 +1,7 @@
 package Controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,14 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainAdminController implements Initializable {
+public class MainStaffController implements Initializable {
 
-    @FXML private Label lblUser;
-    @FXML private AnchorPane contentPane;
     @FXML
     private Button btnBilling;
 
@@ -29,68 +29,48 @@ public class MainAdminController implements Initializable {
     private JFXButton btnPatients;
 
     @FXML
-    private JFXButton btnReports;
-
-    @FXML
     private JFXButton btnSales;
 
     @FXML
-    private JFXButton btnStockUpdate;
+    private AnchorPane contentPane;
 
     @FXML
-    private JFXButton btnSuppliers;
+    private Label lblUser;
 
     @FXML
-    private JFXButton btnUsers;
-
-
-
-
-    @FXML
-    private void loadDashboard() {
-        loadFXML("/View/AdminDashBoard.fxml");
-    }
-
-    @FXML
-    private void loadDrugs() {
-        loadFXML("/View/AdminDrugsAdding.fxml");
-    }
-
-    @FXML
-    private void loadSuppliers() {
-        loadFXML("/View/AdminSupplierAdding.fxml");
-    }
-
-    @FXML
-    private void loadPatients() {
-        loadFXML("/View/PatientsView.fxml");
-    }
-
-    @FXML
-    private void loadSales() {
-        loadFXML("/View/Sales.fxml");
-    }
-
-    @FXML
-    private void loadReports() {
-        showAlert("Info", "Reports module coming soon!");
-    }
-
-    @FXML
-    private void loadUsers() {
-        loadFXML("/View/UserAdding.fxml");
-    }
-
-    @FXML
-    private void loadStockUpdate() {
-        loadFXML("/View/StockUpdate.fxml");
-    }
-
-    @FXML
-    private void loadBilling() {
+    void loadBilling() {
         loadFXML("/View/Billing.fxml");
+
     }
 
+    @FXML
+    void loadDashboard() {
+        loadFXML("/View/StaffDashboard.fxml");
+
+    }
+
+    @FXML
+    void loadDrugs() {
+        loadFXML("/View/StaffDrugs.fxml");
+
+    }
+
+    @FXML
+    void loadPatients() {
+        loadFXML("/View/StaffPatients.fxml");
+
+    }
+
+    @FXML
+    void loadSales() {
+        loadFXML("/View/Sales.fxml");
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadDashboard();
+    }
     private void loadFXML(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -111,19 +91,11 @@ public class MainAdminController implements Initializable {
             showAlert("Error", "Failed to load: " + e.getMessage());
         }
     }
-
-
-
     private void showAlert(String title, String message) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadDashboard();
     }
 }

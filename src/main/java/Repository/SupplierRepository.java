@@ -12,4 +12,6 @@ public interface SupplierRepository {
     List<SuppliersEntity> findAll() throws SQLException;
     List<SuppliersEntity> search(String keyword) throws SQLException;
     String getLastSupplierId() throws SQLException;
+
+    List<String> getSuppliersIds() throws SQLException;
 }

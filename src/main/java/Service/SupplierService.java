@@ -12,4 +12,6 @@ public interface SupplierService {
     List<Suppliers> getAllSuppliers() throws SQLException;
     List<Suppliers> searchSuppliers(String keyword) throws SQLException;
     String generateNextSupplierId() throws SQLException;
+
+    List<String> getAllSupplierIds() throws SQLException;
 }

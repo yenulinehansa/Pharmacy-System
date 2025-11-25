@@ -74,6 +74,12 @@ public class SupplierServiceImpl implements SupplierService {
         return newId;
     }
 
+    @Override
+    public List<String> getAllSupplierIds() throws SQLException {
+        List<String> ids=supplierRepository.getSuppliersIds();
+        return ids;
+    }
+
     private Suppliers convertToDto(SuppliersEntity entity) {
         if (entity == null) return null;
         return new Suppliers(

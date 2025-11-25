@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="532.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StaffDrugController">
+   <children>
+      <Label layoutX="36.0" layoutY="37.0" text="Drugs">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbldrugs" layoutX="36.0" layoutY="78.0" prefHeight="418.0" prefWidth="942.0">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="115.99996566772461" text="ID" />
+          <TableColumn fx:id="colname" prefWidth="200.800048828125" text="NAME" />
+            <TableColumn fx:id="colbrand" prefWidth="196.79998779296875" text="BRAND" />
+            <TableColumn fx:id="colprice" prefWidth="131.199951171875" text="UNIT PRICE" />
+            <TableColumn fx:id="colqty" prefWidth="133.60003662109375" text="STOCK QTY" />
+            <TableColumn fx:id="colexpdate" prefWidth="164.800048828125" text="EXP DATE" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

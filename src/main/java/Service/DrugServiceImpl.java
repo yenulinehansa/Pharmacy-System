@@ -89,6 +89,12 @@ public class DrugServiceImpl implements DrugService {
         }
     }
 
+    @Override
+    public List<String> getAllDrugIds() throws SQLException {
+        List<String> ids=drugRepository.getIds();
+        return ids;
+    }
+
 
     private Drugs convertToDto(DrugsEntity entity) {
         if (entity == null) return null;

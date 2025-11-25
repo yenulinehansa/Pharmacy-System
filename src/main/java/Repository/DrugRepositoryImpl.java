@@ -105,10 +105,26 @@ public class DrugRepositoryImpl implements DrugRepository {
         if (resultSet.next()) {
             return resultSet.getString("id");
         }
-        return null; // No drugs in database
+        return null;
     }
 
+    @Override
+    public List<String> getIds() throws SQLException {
+        List<String> ids=new ArrayList<>();
+        Connection connection=DBConnection.getInstance().getConnection();
+        String SQL = "SELECT id FROM drugs ORDER BY id ";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        ResultSet resultSet = preparedStatement.executeQuery();
 
+        while (resultSet.next()) {
+            String id=resultSet.getString("id");
+            ids.add(id.trim());
+
+        }
+
+
+        return ids;
+    }
 
 
     private DrugsEntity extractDrugsEntity(ResultSet resultSet) throws SQLException {

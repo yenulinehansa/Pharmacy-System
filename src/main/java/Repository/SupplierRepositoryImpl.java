@@ -108,6 +108,24 @@ public class SupplierRepositoryImpl implements SupplierRepository {
         return null; // No suppliers in database
     }
 
+    @Override
+    public List<String> getSuppliersIds() throws SQLException {
+        List<String> ids=new ArrayList<>();
+        Connection connection=DBConnection.getInstance().getConnection();
+        String SQL = "SELECT id FROM Suppliers ORDER BY id ";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            String id=resultSet.getString("id");
+            ids.add(id.trim());
+
+        }
+
+
+        return ids;
+    }
+
     private SuppliersEntity extractSuppliersEntity(ResultSet resultSet) throws SQLException {
         return new SuppliersEntity(
                 resultSet.getString("id"),

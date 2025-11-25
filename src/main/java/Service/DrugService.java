@@ -15,4 +15,5 @@ public interface DrugService {
     String generateNextDrugId() throws SQLException;
 
 
+    List<String> getAllDrugIds() throws SQLException;
 }

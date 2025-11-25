@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="532.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StaffDashboardController">
+
+    <children>
+        <AnchorPane layoutX="26.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(135, 205, 128, 1);">
+            <children>
+                <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
+                    <children>
+                        <Label layoutX="22.0" layoutY="80.0" text="Total Drugs">
+                            <font>
+                                <Font name="Yu Gothic UI Semibold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblTotDrugs" layoutX="24.0" layoutY="38.0" prefHeight="30.0" prefWidth="70.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+
+        <AnchorPane layoutX="232.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(84, 198, 216, 1);">
+            <children>
+                <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
+                    <children>
+                        <Label layoutX="25.0" layoutY="80.0" text="Total Sales">
+                            <font>
+                                <Font name="Yu Gothic UI Semibold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblTotSales" layoutX="24.0" layoutY="40.0" prefHeight="30.0" prefWidth="70.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+
+        <AnchorPane layoutX="608.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(255, 168, 110, 1);">
+            <children>
+                <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
+                    <children>
+                        <Label layoutX="18.0" layoutY="88.0" text="Out Of Stock">
+                            <font>
+                                <Font name="Yu Gothic UI Semibold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblOutOfStock" layoutX="24.0" layoutY="46.0" prefHeight="30.0" prefWidth="70.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+
+        <AnchorPane layoutX="425.0" layoutY="30.0" prefHeight="175.0" prefWidth="166.0" style="-fx-background-color: rgba(205, 128, 140, 1);">
+            <children>
+                <AnchorPane layoutX="24.0" layoutY="26.0" prefHeight="122.0" prefWidth="118.0" style="-fx-background-color: FFFFFF;">
+                    <children>
+                        <Label layoutX="16.0" layoutY="88.0" text="Expired Items">
+                            <font>
+                                <Font name="Yu Gothic UI Semibold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblExpiredItems" layoutX="24.0" layoutY="46.0" prefHeight="30.0" prefWidth="70.0" style="-fx-font-size: 24; -fx-font-weight: bold;" text="0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+
+        <Label layoutX="26.0" layoutY="250.0" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #1f55d6;" text="Welcome to Staff Dashboard" />
+    </children>
+</AnchorPane>

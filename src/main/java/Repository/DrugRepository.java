@@ -15,6 +15,5 @@ public interface DrugRepository {
     String getLastDrugId() throws SQLException;
 
 
-
-
+    List<String> getIds() throws SQLException;
 }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainStaffController">
+
+    <!-- Header -->
+    <AnchorPane prefHeight="68.0" prefWidth="1408.0" style="-fx-background-color: rgba(31, 83, 214, 1);">
+        <children>
+            <Label layoutX="8.0" layoutY="12.0" text="New Pharmacy" textFill="#faf7f7">
+                <font>
+                    <Font name="System Bold" size="29.0" />
+                </font>
+            </Label>
+            <Label layoutX="1189.0" layoutY="20.0" text="Welcome " textFill="WHITE">
+                <font>
+                    <Font name="Microsoft JhengHei Light" size="16.0" />
+                </font>
+            </Label>
+            <Label fx:id="lblUser" layoutX="1268.0" layoutY="20.0" prefWidth="138.0" text="Admin" textFill="WHITE">
+                <font>
+                    <Font name="Microsoft JhengHei Light" size="16.0" />
+                </font>
+            </Label>
+        </children>
+    </AnchorPane>
+
+    <!-- Sidebar -->
+    <AnchorPane layoutY="68.0" prefHeight="532.0" prefWidth="178.0" style="-fx-background-color: FFFFFF;">
+        <children>
+            <!-- Dashboard Button -->
+            <JFXButton fx:id="btnDashboard" layoutX="55.0" layoutY="34.0" onAction="#loadDashboard" prefHeight="30.0" prefWidth="102.0" text="Dashboard">
+                <font>
+                    <Font name="Calibri Bold" size="16.0" />
+                </font>
+            </JFXButton>
+            <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="25.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../View/Images/dashboard.png" />
+                </image>
+            </ImageView>
+
+            <!-- Drugs Button -->
+            <JFXButton fx:id="btnDrugs" layoutX="66.0" layoutY="82.0" onAction="#loadDrugs" prefHeight="30.0" prefWidth="61.0" text="Drugs">
+                <font>
+                    <Font name="Calibri Bold" size="16.0" />
+                </font>
+            </JFXButton>
+            <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="25.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../View/Images/drugs.png" />
+                </image>
+            </ImageView>
+
+            <!-- Sales Button -->
+            <JFXButton fx:id="btnSales" layoutX="66.0" layoutY="132.0" onAction="#loadSales" prefHeight="30.0" prefWidth="62.0" text="Sales">
+                <font>
+                    <Font name="Calibri Bold" size="16.0" />
+                </font>
+            </JFXButton>
+            <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="25.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../View/Images/shopping-cart.png" />
+                </image>
+            </ImageView>
+
+            <!-- Patients Button -->
+            <JFXButton fx:id="btnPatients" layoutX="57.0" layoutY="177.0" onAction="#loadPatients" prefHeight="30.0" prefWidth="79.0" text="Patients">
+                <font>
+                    <Font name="Calibri Bold" size="16.0" />
+                </font>
+            </JFXButton>
+            <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="25.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../View/Images/patient.png" />
+                </image>
+            </ImageView>
+
+            <!-- Billing Button -->
+            <Button fx:id="btnBilling" layoutX="38.0" layoutY="392.0" mnemonicParsing="false" onAction="#loadBilling" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: rgba(0, 0, 0, 1);" text="Billing" textFill="#fcf9f9">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Button>
+        </children>
+    </AnchorPane>
+
+    <!-- Content Area -->
+    <AnchorPane fx:id="contentPane" layoutX="178.0" layoutY="68.0" prefHeight="532.0" prefWidth="1230.0" style="-fx-background-color: rgba(187, 193, 187, 1);" />
+</AnchorPane>

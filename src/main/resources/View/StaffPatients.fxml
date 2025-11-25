@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="532.0" prefWidth="1188.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StaffPatientController">
+   <children>
+      <Label layoutX="36.0" layoutY="37.0" text="Patients">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblpatients" layoutX="36.0" layoutY="78.0" prefHeight="418.0" prefWidth="789.0">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="151.99999618530273" text="ID" />
+          <TableColumn fx:id="colname" prefWidth="409.60003662109375" text="NAME" />
+            <TableColumn fx:id="coltelno" prefWidth="226.39998779296877" text="TEL NO " />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
