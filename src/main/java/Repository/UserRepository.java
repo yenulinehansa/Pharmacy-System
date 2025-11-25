@@ -14,4 +14,9 @@ public interface UserRepository {
     List<UsersEntity> search(String keyword) throws SQLException;
     String getLastUserId() throws SQLException;
     UsersEntity findByUsername(String username) throws SQLException;
+
+    UsersEntity findByUsernameAndRole(String username, String role) throws SQLException;
+
+
+    UsersEntity authenticate(String username, String password, String role) throws SQLException;
 }

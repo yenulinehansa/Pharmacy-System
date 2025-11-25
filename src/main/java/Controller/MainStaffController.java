@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Dto.Users;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,6 +37,16 @@ public class MainStaffController implements Initializable {
 
     @FXML
     private Label lblUser;
+
+
+    private Users currentUser;
+
+    public void setUser(Users user) {
+        this.currentUser = user;
+        if (user != null && lblUser != null) {
+            lblUser.setText(user.getName());
+        }
+    }
 
     @FXML
     void loadBilling() {

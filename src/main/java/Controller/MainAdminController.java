@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Dto.Users;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +45,14 @@ public class MainAdminController implements Initializable {
     private JFXButton btnUsers;
 
 
+    private Users currentUser;
+
+    public void setUser(Users user) {
+        this.currentUser = user;
+        if (user != null && lblUser != null) {
+            lblUser.setText(user.getName());
+        }
+    }
 
 
     @FXML

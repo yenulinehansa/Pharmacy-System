@@ -122,4 +122,16 @@ public class UserServiceImpl implements UserService {
                 entity.getRegDate()
         );
     }
+    @Override
+    public Users authenticateUser(String username, String password, String role) throws SQLException {
+        UsersEntity entity = userRepository.authenticate(username, password, role);
+        return convertToDto(entity);
+    }
+
+    @Override
+    public boolean userExistsWithRole(String username, String role) throws SQLException {
+        UsersEntity entity = userRepository.findByUsernameAndRole(username, role);
+        return entity != null;
+    }
+
 }

@@ -13,7 +13,7 @@ public class Starter extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/MainAdminLayout.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/FrontPage.fxml"));
         primaryStage.setTitle("Pharmacy Management System");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

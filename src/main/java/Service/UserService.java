@@ -15,4 +15,9 @@ public interface UserService {
     List<Users> searchUsers(String keyword) throws SQLException;
     String generateNextUserId() throws SQLException;
     boolean validateUser(String username, String password) throws SQLException;
+
+    Users authenticateUser(String username, String password, String role) throws SQLException;
+
+
+    boolean userExistsWithRole(String username, String role) throws SQLException;
 }

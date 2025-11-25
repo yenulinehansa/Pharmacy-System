@@ -144,4 +144,34 @@ public class UserRepositoryImpl implements UserRepository {
                 resultSet.getDate("regDate").toLocalDate()
         );
     }
+    @Override
+    public UsersEntity findByUsernameAndRole(String username, String role) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String SQL = "SELECT * FROM Users WHERE username=? AND role=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        preparedStatement.setObject(1, username);
+        preparedStatement.setObject(2, role);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return extractUsersEntity(resultSet);
+        }
+        return null;
+    }
+
+    @Override
+    public UsersEntity authenticate(String username, String password, String role) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String SQL = "SELECT * FROM Users WHERE username=? AND password=? AND role=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        preparedStatement.setObject(1, username);
+        preparedStatement.setObject(2, password);
+        preparedStatement.setObject(3, role);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return extractUsersEntity(resultSet);
+        }
+        return null;
+    }
 }
